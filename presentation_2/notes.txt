@@ -1,0 +1,40 @@
+https://socket.io/docs/v4/client-installation/
+https://socket.io/docs/v4/
+https://gunicorn.org/
+https://www.piesocket.com/blog/python-websocket
+https://python-socketio.readthedocs.io/en/latest/api.html#socketio.ASGIApp
+https://www.youtube.com/watch?v=tHQvTOcx_Ys
+
+server który wystawi nasze IO teoretycznie najpopularniejsze, trasnform socket IO app to WSGI z którą można się połączyć przez wsgi web server np gunicorn, server bierze naszą aplikację jako argument i stawia ją
+
+gunicorn -threads 50 app:app <-- takie coś nie korzysta z web socketów, pooling transport po pewnym czasie jest zrywane, popatrzeć na network tab
+
+gunicorn -k eventlet -w 1 <- 1 worker gdzie są zaimplementowane web sockety na którym jest stawiany server gunicorn jest w stanie obłsużyć kilka tysięcy requestów app:app nazwa pliku gdzie znajduje się server : nazwa zmiennej WSGI servera
+trzeba uważać z tym eventlet bo nie działa w python 3.10, oraz jeggo najnowsza wersja nie działa zbyt dobrze dlatego trzeba używać wersji 0.20
+
+mamy dwie możliwości utorzenia serwera, albo tak albo Async 
+
+WSGI app ma   taki fajny ficzer, że możemy hostować static files podając ścieżki routingu i dostępu.
+
+
+socket io działa na zasadzie event handlers za każdym razem kiedy server coś dostanie triggeruje event
+przykład eventu, klient łączy się z serverem oraz rozłącza sie
+korzystamy z dekoratrów aby tworzyć eventy na serwerze
+
+
+//jak zatrzymamy serwer to klient bbędzie próbował się połączyć
+    //ważne jest też to, że to połączenie nie jest na zawsze, po określonej jednostce czasu zostanie ono zerwane przez serwer
+to bez web socketów
+
+    //websocket jest stałym połączeniem aby przesyłać dane w dwóch kierunków 
+
+//pip install python-socketio
+//pip install gunicorn
+//pip install eventlet
+//python-socketio[asyncio_client]
+
+
+
+event - odbijanie piłeczki
+callbacks
+broadcast
