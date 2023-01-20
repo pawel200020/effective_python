@@ -1,17 +1,4 @@
-const sio = io({
-    transportOptions: {
-        polling: {
-            extraHeaders: {
-                'X-Username': window.location.hash.substring(1)
-            }
-        }
-    } //dodanie custom headera
-    //uwaga socket io nie wspiera tego, najpierw jest stawiane poly connection a potem dopiero websocket bo jego protokoły nie pozwalają na extra headers
-});
-
-sio.on('connect_error', (e) => {
-    console.log(e.message)
-})
+const sio = io();
 
 //my chcemy coś od servera
 sio.on('connect', () => {

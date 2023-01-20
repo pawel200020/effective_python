@@ -7,7 +7,7 @@ https://www.youtube.com/watch?v=tHQvTOcx_Ys
 
 server który wystawi nasze IO teoretycznie najpopularniejsze, trasnform socket IO app to WSGI z którą można się połączyć przez wsgi web server np gunicorn, server bierze naszą aplikację jako argument i stawia ją
 
-gunicorn -threads 50 app:app <-- takie coś nie korzysta z web socketów, pooling transport po pewnym czasie jest zrywane, popatrzeć na network tab
+gunicorn -threads 50 app:app <-- takie coś nie korzysta z web socketów, pooling transport po pewnym czasie jest zrywane, popatrzeć na network tab po chwili pojawią się kolejne requesty
 
 gunicorn -k eventlet -w 1 <- 1 worker gdzie są zaimplementowane web sockety na którym jest stawiany server gunicorn jest w stanie obłsużyć kilka tysięcy requestów app:app nazwa pliku gdzie znajduje się server : nazwa zmiennej WSGI servera
 trzeba uważać z tym eventlet bo nie działa w python 3.10, oraz jeggo najnowsza wersja nie działa zbyt dobrze dlatego trzeba używać wersji 0.20

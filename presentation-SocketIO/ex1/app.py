@@ -3,7 +3,7 @@ import socketio
 sio = socketio.Server() #mamy dwie możliwości utorzenia serwera
 app = socketio.WSGIApp(sio,static_files={
     '/': './public/'
-})
+}) #web server hostujący aplikacje
 #możemy hostować static files podając ścieżki routingu i dostępu
 
 
